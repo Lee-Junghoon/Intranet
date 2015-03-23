@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="shortcut icon" href="/resources/images/favicon/Samsong_logo.ico" th:href="@{/resources/images/favicon/Samsong_logo.ico}"/>	<!-- Favicon -->
+<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css" th:href="@{/resources/bootstrap/css/bootstrap.min.css}"/>
+<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap-theme.min.css" th:href="@{/resources/bootstrap/css/bootstrap-theme.min.css}"/>
+<link rel="stylesheet" href="/resources/views/main.css" th:href="@{/resources/views/main.css}"/>
+<link rel="stylesheet" href="/resources/views/layout/header.css" th:href="@{/resources/views/layout/header.css}"/>
+<link rel="stylesheet" href="/resources/views/layout/footer.css" th:href="@{/resources/views/layout/footer.css}"/>
+<script src="/resources/jquery/jquery-2.1.1.min.js" th:src="@{/resources/jquery/jquery-2.1.1.min.js}"></script>   
+<script src="/resources/bootstrap/js/bootstrap.min.js" th:src="@{/resources/bootstrap/js/bootstrap.min.js}"></script> 
+<title>공지사항 | SAMSONG Intranet</title>
+</head>
+<body>
+<!-- header 페이지 상단 네비게이션 바-->
+<div th:replace="layout/header :: header"></div>
+<!-- ############################################################################################################################################################# -->
+<!-- Main Section-->
+<div class="container">
+<h2>공지사항</h2>
+</div>
+<!-- ############################################################################################################################################################# -->
+<!-- Footer -->
+<div th:replace="layout/footer :: footer"></div>
+</body>
+</html>

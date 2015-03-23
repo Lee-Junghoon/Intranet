@@ -1,0 +1,12 @@
+body{
+	font-family:나눔고딕;
+}
+
+.main-footer {
+    border-top: 1px solid #e5e5e5;
+    color: #777;
+    margin-top: 100px;
+    padding-bottom: 40px;
+    padding-top: 40px;
+    text-align: center;
+}

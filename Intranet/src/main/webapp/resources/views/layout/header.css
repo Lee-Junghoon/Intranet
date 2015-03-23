@@ -1,0 +1,26 @@
+html{
+	font-family:나눔고딕;
+}
+.navbar-static-top {
+  margin-bottom: 19px;
+}
+.main-logo {
+	width: 50px;
+	height: 45px;
+}
+ul .user{
+	font-size:.9em;
+}
+a .navbar-logo{
+	padding:3px;
+}
+.emp-thumbnail{
+	width:25px;
+	height:25px;
+	padding:2px;
+}
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}

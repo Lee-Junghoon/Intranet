@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+    xmlns="http://www.springframework.org/schema/security"
+     xmlns:beans="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="
+     http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/security
+     http://www.springframework.org/schema/security/spring-security.xsd
+     ">
+	
+	<!-- 접근권한 설정 -->
+	<http pattern="/resources/**" security="none"/>
+	
+	<http auto-config="false" use-expressions="true">
+		<intercept-url pattern="/" access="permitAll"/>
+		<intercept-url pattern="/login" access="permitAll" />
+		<intercept-url pattern="/logout" access="permitAll" />
+		<intercept-url pattern="/signup" access="permitAll" />
+		<intercept-url pattern="/findpw" access="permitAll" />
+		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
+		<form-login
+			login-page="/login"
+			authentication-success-handler-ref="loginSuccessHandler"
+		    authentication-failure-handler-ref="loginFailureHandler"
+			default-target-url="/main"
+			always-use-default-target="false"
+		/>
+		<logout invalidate-session="true" logout-success-url="/" delete-cookies="true"/>
+		<!-- <logout invalidate-session="true" delete-cookies="true" logout-url="/logout" success-handler-ref="logoutSuccessHandler"/> -->
+		<!-- <remember-me data-source-ref="dataSource"/> -->
+	</http>
+	
+	<beans:bean id="sessionDestroyListener" class="com.samsong.intranet.security.SessionDestoryListener">
+		<beans:constructor-arg name="datasource" ref="dataSource"></beans:constructor-arg>
+	</beans:bean>
+	
+	<!-- 커스텀 로그아웃 핸들러 -->
+	<!-- <beans:bean id="logoutSuccessHandler" class="com.samsong.intranet.security.CustomLogoutSuccessHandler">
+		<beans:constructor-arg name="datasource" ref="dataSource"></beans:constructor-arg>
+		<beans:property name="defaultUrl" value="/intranet"></beans:property>
+	</beans:bean> -->
+	
+	<beans:bean id="loginSuccessHandler" class="com.samsong.intranet.security.LoginSuccessHandler"><!-- 로그인성공시 처리할 핸들러 빈을 정의 -->
+		<beans:property name="targetUrlParameter" value="loginRedirect"/>
+		<beans:property name="defaultUrl" value="/main"/>
+		<beans:property name="useReferer" value="false"/>
+	</beans:bean>
+    <beans:bean id="loginFailureHandler" class="com.samsong.intranet.security.LoginFailureHandler"><!-- 로그인실패시 처리할 핸들러 빈을 정의 -->
+    	<beans:property name="loginIdName" value="j_username" />
+    	<beans:property name="loginIdPassword" value="j_password" />
+    	<beans:property name="loginRedirectName" value="loginRedirect" />
+    	<beans:property name="exceptionMsgName" value="securityexceptionmsg" />
+		<beans:property name="defaultFailureUrl" value="/login?fail=true" />
+	</beans:bean>
+	
+	<beans:bean id="userService" class="com.samsong.intranet.user.UserServiceImpl">
+		<beans:constructor-arg name="datasource" ref="dataSource"></beans:constructor-arg>
+	</beans:bean><!-- 로그인 처리과정에서 User 객체를 생성하는 UserSevice 빈의 정의 -->
+	
+  	<authentication-manager>  
+		<authentication-provider user-service-ref="userService">
+			<password-encoder ref="passwordEncoder">   
+			</password-encoder>
+		</authentication-provider>
+	</authentication-manager>
+	<beans:bean id="passwordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder"/><!-- Spring Security 에서 제공하는 패스워드 인코더의 빈을 정의 -->
+</beans:beans>

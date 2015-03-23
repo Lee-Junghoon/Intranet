@@ -1,0 +1,9 @@
+.emp-photo{
+	width:70px;
+	height:80px;
+}
+.list-group-item:hover{
+	background-color:#CEE3F6;
+}
+.list-group-item-heading{color:#333;float:left;margin-right:10px;padding:2px 0px;}
+.list-group-item-text{color:#555;padding:2px 0px;}

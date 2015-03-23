@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="shortcut icon" href="/resources/images/favicon/Samsong_logo.ico" th:href="@{/resources/images/favicon/Samsong_logo.ico}"/>	<!-- Favicon -->
+<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css" th:href="@{/resources/bootstrap/css/bootstrap.min.css}"/>
+<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap-theme.min.css" th:href="@{/resources/bootstrap/css/bootstrap-theme.min.css}"/>
+<link rel="stylesheet" href="/resources/views/navigation/employees.css" th:href="@{/resources/views/navigation/employees.css}"/>
+<link rel="stylesheet" href="/resources/views/layout/header.css" th:href="@{/resources/views/layout/header.css}"/>
+<link rel="stylesheet" href="/resources/views/layout/footer.css" th:href="@{/resources/views/layout/footer.css}"/>
+<script src="/resources/jquery/jquery-2.1.1.min.js" th:src="@{/resources/jquery/jquery-2.1.1.min.js}"></script>   
+<script src="/resources/bootstrap/js/bootstrap.min.js" th:src="@{/resources/bootstrap/js/bootstrap.min.js}"></script> 
+<title>사원목록 | SAMSONG Intranet</title>
+<script th:inline="javascript">
+/*<![CDATA[*/var _context = [[@{/}]];/*]]>*/
+</script>
+<script src="/resources/views/navigation/employees.js" th:src="@{/resources/views/navigation/employees.js}"></script>
+</head>
+<body>
+<!-- header 페이지 상단 네비게이션 바-->
+<div th:replace="layout/header :: header"></div>
+<!-- ############################################################################################################################################################# -->
+<!-- Main Section-->
+<div class="container">
+<div class="list-group">
+<div class="list-group-item" th:each="emp : ${employees}">
+	<div class="media">
+		<div class="media-left">
+			<img class="emp-photo img-rounded" th:attr="src=@{${emp.empPhoto}},alt=@{${emp.empPhoto}}"/>
+		</div>
+		<div class="media-body">
+			<input type="hidden" th:value="${emp.empNo}" id="empNo" name="empNo"/>
+			<p><h4 class="list-group-item-heading" th:text="${emp.empName}"></h4><h4 class="list-group-item-heading" th:text="${emp.rankName}"></h4></p>
+			<p class="list-group-item-text" th:text="${emp.deptName}"></p>
+		</div>
+	</div>
+</div>
+<!-- <a class="list-group-item" href="#" th:each="emp : ${employees}">
+<img class="emp-photo img-rounded" th:attr="src=@{${emp.empPhoto}},alt=@{${emp.empPhoto}}"/>
+<h4 class="list-group-item-heading" th:text="${emp.empName}"></h4>
+<p class="list-group-item-text" th:text="${emp.deptName}"></p>
+</a> -->
+</div>
+</div>
+<!-- ############################################################################################################################################################# -->
+<!-- Footer -->
+<div th:replace="layout/footer :: footer"></div>
+</body>
+</html>

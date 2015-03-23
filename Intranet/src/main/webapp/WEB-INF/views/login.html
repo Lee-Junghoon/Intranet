@@ -1,0 +1,106 @@
+<!DOCTYPE html>	
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head>
+<title>SAMSONG Intranet</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+<link rel="shortcut icon" href="/resources/images/favicon/Samsong_logo.ico" th:href="@{/resources/images/favicon/Samsong_logo.ico}"/>		<!-- Favicon -->
+<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css" th:href="@{/resources/bootstrap/css/bootstrap.min.css}"/>
+<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap-theme.min.css" th:href="@{/resources/bootstrap/css/bootstrap-theme.min.css}"/>
+<link rel="stylesheet" href="/resources/views/login.css" th:href="@{/resources/views/login.css}"/>
+<link rel="stylesheet" href="/resources/views/common.css" th:href="@{/resources/views/common.css}"/>
+<link rel="stylesheet" href="/resources/views/layout/header.css" th:href="@{/resources/views/layout/header.css}"/>
+<link rel="stylesheet" href="/resources/views/layout/footer.css" th:href="@{/resources/views/layout/footer.css}"/>  
+<script src="/resources/jquery/jquery-2.1.1.min.js" th:src="@{/resources/jquery/jquery-2.1.1.min.js}"></script>
+<script src="/resources/bootstrap/js/bootstrap.min.js" th:src="@{/resources/bootstrap/js/bootstrap.min.js}"></script>
+<style>
+body{font-family: 나눔고딕;}
+</style> 
+<script th:inline="javascript">
+/*<![CDATA[*/var _context = [[@{/}]];/*]]>*/
+</script>
+<script src="/resources/views/login.js" th:src="@{/resources/views/login.js}"></script>
+</head>
+<body>
+<!-- Main Section-->
+<div class="container">
+	<form class="form-signin" role="form" method="post" action="/j_spring_security_check" th:action="@{/j_spring_security_check}">
+		<h3 class="form-signin-heading"><img class="main-logo" src="/resources/images/SSLogo2.png" th:src="@{/resources/images/SSLogo2.png}" alter="SSLogo2.png" />&nbsp;SAMSONG Intranet</h3>
+		<label for="inputEmail" class="sr-only">Email address</label>
+		<input type="text" id="j_username" name="j_username" th:value="${j_username}" class="form-control" th:placeholder="@{사번}" th:required="${true}" th:autofocus="${true}" />
+		<label for="inputPassword" class="sr-only">Password</label>
+		<input type="password" id="j_password" name="j_password" th:value="${j_password}" class="form-control" th:placeholder="@{비밀번호}" th:required="${true}" />
+		<div th:if="not ${#strings.isEmpty(securityexceptionmsg)}">
+			<div class="alert alert-warning">
+				<p class="text-warning" th:text="${securityexceptionmsg}"></p>
+				<div class="btn-group btn-group-justified" role="group" aria-label="...">
+					<div class="btn-group" role="group">
+						<button class="btn btn-md btn-warning" type="button" data-toggle="modal" data-target=".signup-modal">신규등록하기</button>
+					</div>					
+					<div class="btn-group" role="group">
+						<button class="btn btn-md btn-warning" type="button" data-toggle="modal" data-target=".findpw-modal">비밀번호찾기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<button class="btn btn-lg btn-primary btn-block" type="submit" id="btnLogin">로그인</button>
+	</form>
+</div> <!-- /container -->
+<!-- 신규등록 모달 다이얼로그 -->
+<div class="modal fade signup-modal" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true" id="signupModal">
+	<div class="modal-dialog modal-sm modal-vertical-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="alert bs-callout bs-callout-primary">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		      		<h5 class="modal-title" id="signupModalLabel"><strong>삼송 인트라넷 신규계정등록</strong></h5>
+				</div>	      		
+      		</div>
+      		<div class="modal-body">
+      			<div class="alert alert-info">
+      				<p>삼송인 이신가요? 아래 정보를 입력하여 인트라넷 계정을 등록하세요.</p>
+      				<br />
+      				<input class="form-control" type="text" id="username" th:placeholder="@{사번}" th:required="${true}" th:autofocus="${true}" />
+	      			<input class="form-control" type="password" id="birth" th:placeholder="@{주민등록번호 앞 6자리번호}" th:required="${true}"/>
+	      			<input class="form-control" type="password" id="password" th:placeholder="@{신규비밀번호}" th:required="${true}"/>
+	      			<input class="form-control" type="password" id="password2" th:placeholder="@{신규비밀번호확인}" th:required="${true}"/>
+      			</div>
+		    </div>
+      		<div class="modal-footer">
+        		<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+        		<button type="submit" class="btn btn-primary" id="btnSignup">등록</button>
+      		</div>
+		</div>
+	</div>
+</div>
+<!-- 비밀번호 찾기 모달 다이얼로그 -->
+<div class="modal fade findpw-modal" role="dialog" aria-labelledby="findPwModalLabel" aria-hidden="true" id="findPwModal">
+	<div class="modal-dialog modal-sm modal-vertical-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="alert bs-callout bs-callout-primary">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		      		<h5 class="modal-title" id="findPwModalLabel"><strong>삼송 인트라넷 비밀번호 재발급</strong></h5>
+				</div>
+			</div>
+			<div class="modal-body">
+				<div class="alert alert-info">
+      				<p>비밀번호를 잃어 버렸나요? 아래 정보를 입력하여 임시 비밀번호를 발급 받으세요. 자신의 메일주소로 임시 비밀번호가 발송 됩니다.</p>
+      				<br />
+      				<input class="form-control" type="text" id="username2" th:placeholder="@{사번}" th:required="${true}" th:autofocus="${true}" />
+	      			<input class="form-control" type="password" id="birth2" th:placeholder="@{주민등록번호 앞 6자리}" th:required="${true}"/>
+      			</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+        		<button type="button" class="btn btn-primary" id="btnFindPw">임시 비밀번호 발송</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- ############################################################################################################################################################# -->
+<!-- Footer -->
+<div th:replace="layout/footer :: footer"></div>
+</body>
+</html>

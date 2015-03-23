@@ -1,0 +1,13 @@
+eclipse.preferences.version=1
+encoding//src/main/webapp/WEB-INF/views/layout/header.html=UTF-8
+encoding//src/main/webapp/WEB-INF/views/navigation/notice.html=UTF-8
+encoding//src/main/webapp/resources/bootstrap/css/glyphicons.css=UTF-8
+encoding//src/main/webapp/resources/views/common.css=UTF-8
+encoding//src/main/webapp/resources/views/layout/footer.css=UTF-8
+encoding//src/main/webapp/resources/views/layout/header.css=UTF-8
+encoding//src/main/webapp/resources/views/login.css=UTF-8
+encoding//src/main/webapp/resources/views/main.css=UTF-8
+encoding//src/main/webapp/resources/views/navigation/employees-detail.css=UTF-8
+encoding//src/main/webapp/resources/views/navigation/employees.css=UTF-8
+encoding//src/main/webapp/resources/views/settings/account.css=UTF-8
+encoding/<project>=UTF-8

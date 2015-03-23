@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="shortcut icon" href="/resources/images/favicon/Samsong_logo.ico" th:href="@{/resources/images/favicon/Samsong_logo.ico}"/>	<!-- Favicon -->
+<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css" th:href="@{/resources/bootstrap/css/bootstrap.min.css}"/>
+<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap-theme.min.css" th:href="@{/resources/bootstrap/css/bootstrap-theme.min.css}"/>
+<link rel="stylesheet" href="/resources/views/settings/account.css" th:href="@{/resources/views/settings/account.css}"/>
+<link rel="stylesheet" href="/resources/views/layout/header.css" th:href="@{/resources/views/layout/header.css}"/>
+<link rel="stylesheet" href="/resources/views/layout/footer.css" th:href="@{/resources/views/layout/footer.css}"/>
+<script src="/resources/jquery/jquery-2.1.1.min.js" th:src="@{/resources/jquery/jquery-2.1.1.min.js}"></script>   
+<script src="/resources/bootstrap/js/bootstrap.min.js" th:src="@{/resources/bootstrap/js/bootstrap.min.js}"></script> 
+<title>Settings | SAMSONG Intranet</title>
+<script th:inline="javascript">
+/*<![CDATA[*/var context = [[@{/}]];/*]]>*/
+</script>
+<script src="/resources/views/account.js" th:src="@{/resources/views/account.js}"></script>
+</head>
+<body>
+<!-- header 페이지 상단 네비게이션 바-->
+<div th:replace="layout/header :: header"></div>
+<!-- ############################################################################################################################################################# -->
+<!-- Main Section-->
+<div class="container">
+	<div class="container-account">
+		<h2>개인정보</h2>
+		<div class="divider"></div>
+		<div class="account-section">
+			<h3>기본정보</h3>
+			<div class="form-horizontal row section-item">
+				<div class="form-group col-md-12">
+					<label class="control-label col-md-4" for="empPhoto">사진</label>
+					<div class="col-md-8">
+						<img class="emp-photo img-rounded" th:attr="src=@{${user.empPhoto}},alt=@{${user.empPhoto}}" id="empPhoto" />
+					</div>
+				</div>
+				<div class="form-group col-md-12">
+					<label class="control-label col-md-4" for="empName">이름</label>
+					<div class="col-md-8">
+						<span class="form-control section-input" th:text="${user['empName']}" id="empName"></span>
+					</div>
+				</div>
+				<div class="form-group col-md-12">
+					<label class="control-label col-md-4" for="mail">E-mail</label>
+					<div class="col-md-8">
+						<span class="form-control section-input" th:text="${user['email']}" id="mail"></span>
+					</div>
+				</div>
+				<div class="form-group col-md-12">
+					<label class="control-label col-md-4" for="birthday">생일</label>
+					<div class="col-md-8">
+						<span class="form-control section-input" th:text="${user['birthday']}" id="birthday"></span>
+					</div>
+				</div>
+				<div class="form-group col-md-12">
+					<label class="control-label col-md-4" for="dept">부서</label>
+					<div class="col-md-8">
+						<span class="form-control section-input" th:text="${user['deptName']}" id="dept"></span>
+					</div>
+				</div>
+				<div class="form-group col-md-12">
+					<label class="control-label col-md-4" for="rank">직책</label>
+					<div class="col-md-8">
+						<span class="form-control section-input" th:text="${user['positionName']}"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="divider"></div>
+		<div class="account-section">
+			<h3>비밀번호</h3>
+			<div class="form-horizontal row section-item">
+				<div class="form-group col-md-12 current-passwd">
+					<label class="control-label col-md-4" for="current_password">현재 비밀번호</label>
+					<div class="col-md-8">
+						<input class="form-control section-input" type="password" id="current_password"/>
+					</div>
+				</div>
+				<div class="form-group col-md-12">
+					<label class="control-label col-md-4" for="new_password">새로운 비밀번호</label>
+					<div class="col-md-8">
+						<input class="form-control section-input" type="password" id="new_password"/>
+					</div>
+				</div>
+				<div class="form-group col-md-12">
+					<label class="control-label col-md-4" for="new_password2">비밀번호 확인</label>
+					<div class="col-md-8">
+						<input class="form-control section-input" type="password" id="new_password2"/>
+					</div>
+				</div>
+				<div class="form-group col-md-12" style="text-align:center;">
+					<label class="control-label col-md-4">&nbsp;</label>
+					<div class="col-md-8" style="text-align:left; margin-top:20px;">
+						<button class="btn btn-md btn-warning section-button" type="button" id="btnSavePw">비밀번호저장</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- ############################################################################################################################################################# -->
+<!-- Footer -->
+<div th:replace="layout/footer :: footer"></div>
+</body>
+</html>

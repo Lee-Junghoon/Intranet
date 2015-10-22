@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" ng-app="">
 <head>
 <meta charset="utf-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<link rel="shortcut icon" href="/resources/images/favicon/Samsong_logo.ico" th:href="@{/resources/images/favicon/Samsong_logo.ico}"/>	<!-- Favicon -->
-<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css" th:href="@{/resources/bootstrap/css/bootstrap.min.css}"/>
-<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap-theme.min.css" th:href="@{/resources/bootstrap/css/bootstrap-theme.min.css}"/>
-<link rel="stylesheet" href="/resources/views/main.css" th:href="@{/resources/views/main.css}"/>
-<link rel="stylesheet" href="/resources/views/layout/header.css" th:href="@{/resources/views/layout/header.css}"/>
-<link rel="stylesheet" href="/resources/views/layout/footer.css" th:href="@{/resources/views/layout/footer.css}"/>
-<script src="/resources/jquery/jquery-2.1.1.min.js" th:src="@{/resources/jquery/jquery-2.1.1.min.js}"></script>   
-<script src="/resources/bootstrap/js/bootstrap.min.js" th:src="@{/resources/bootstrap/js/bootstrap.min.js}"></script> 
+<link rel="shortcut icon" th:href="@{/resources/images/favicon/Samsong_logo.ico}"/>	<!-- Favicon -->
+<link rel="stylesheet" th:href="@{/resources/bootstrap/css/bootstrap.min.css}"/>
+<link rel="stylesheet" th:href="@{/resources/bootstrap/css/bootstrap-theme.min.css}"/>
+<link rel="stylesheet" th:href="@{/resources/bootstrap/css/carousel/carousel.css}"/><!-- carousel -->
+<link rel="stylesheet" th:href="@{/resources/views/main.css}"/>
+<link rel="stylesheet" th:href="@{/resources/views/layout/header.css}"/>
+<link rel="stylesheet" th:href="@{/resources/views/layout/footer.css}"/>
+<script th:src="@{/resources/jquery/jquery-2.1.1.min.js}"></script>   
+<script th:src="@{/resources/bootstrap/js/bootstrap.min.js}"></script> 
+<script th:src="@{/resources/bootstrap/js/angular.min.js}"></script>
 <title>Dashboard | SAMSONG Intranet</title>
+<script th:inline="javascript">/*<![CDATA[*/var _context = [[@{/}]];/*]]>*/</script>
+<script th:src="@{/resources/views/main.js}"></script>
 </head>
 <body>
 <!-- header 페이지 상단 네비게이션 바-->
@@ -20,8 +24,80 @@
 <!-- ############################################################################################################################################################# -->
 <!-- Main Section-->
 <div class="container">
-<h2>Dashboard</h2>
+<div class="col-md-6">
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img class="img-responsive" th:attr="src=@{/resources/images/pyramid.gif},alt=@{pyramid.gif}" />
+      <div class="carousel-caption">
+        <h3>1번그림</h3>
+        <p>내용</p>
+      </div>
+    </div>
+    <div class="item">
+      <img class="img-responsive" th:attr="src=@{/resources/images/Tulips.jpg},alt=@{Tulips.jpg}" />
+      <div class="carousel-caption">
+        <h3>2번그림</h3>
+        <p>내용</p>
+      </div>
+    </div>
+    <div class="item">
+      <img class="img-responsive" th:attr="src=@{/resources/images/warwick.png},alt=@{warwick.png}" />
+      <div class="carousel-caption">
+        <h3>3번그림</h3>
+        <p>내용</p>
+      </div>
+    </div>
+  </div>
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
+</div>
+<div class="col-md-6">
+<h4>공지사항</h4>
+<div class="panel panel-default">
+	<div class="panel-heading"><h3 class="panel-title" th:text="${notice.subject}"></h3></div>
+	<div class="panel-body" th:text="${notice.content}"></div>
+</div>
+</div>
+<div class="col-xs-12"><h4>자료실</h4></div>
+<div class="col-xs-12">
+<div class="list-group">
+	<div class="list-group-item" th:each="edu : ${eduList}">
+		<div class="media">
+			<div class="media-left">
+				<a href="#">
+					<img class="emp-photo img-rounded" th:attr="src=@{${edu.empPhoto}},alt=@{${edu.empPhoto}}"/>
+				</a>
+			</div>
+			<div class="media-body">
+				<h5 class="list-group-item-heading media-heading" th:text="${edu.title}"></h5>
+				<p class="list-group-item-text">...</p>
+			</div>
+		</div>
+  	</div>
+</div><!-- list group -->
+</div>
+<div class="col-xs-12">
+	<div class="panel panel-default col-xs-12">
+  		<div class="panel-body">Basic panel example</div>
+	</div>
+</div>
+</div><!-- end container -->
 <!-- ############################################################################################################################################################# -->
 <!-- Footer -->
 <div th:replace="layout/footer :: footer"></div>

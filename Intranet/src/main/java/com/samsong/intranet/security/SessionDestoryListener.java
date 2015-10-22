@@ -30,7 +30,7 @@ public class SessionDestoryListener implements ApplicationListener<SessionDestro
 				User user = (User)ctx.getAuthentication().getPrincipal();
 				String sql = "EXEC "+DB_PREFIX_WEBDESK+"MOBILE_LOG_INSERT ?,?";
 				jdbc.update(sql, user.getEmpNo(), "LOGOUT");
-				logger.info(user.getEmpName()+"님이 로그아웃 하였습니다.");
+				logger.info("["+user.getDeptName()+"]"+user.getEmpName()+"님이 로그아웃 하였습니다.");
 			}
 		}
 

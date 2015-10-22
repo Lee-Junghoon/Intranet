@@ -135,6 +135,6 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
 	    		break;
     	}
 
-    	logger.info(user.getEmpName() + "님이 로그인 하였습니다.");
+    	logger.info("["+user.getDeptName()+"]"+user.getEmpName() + "님이 로그인 하였습니다.");
     }
 }

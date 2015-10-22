@@ -13,51 +13,49 @@
 				<a class="navbar-brand" th:href="@{/home}"><img class="main-logo" style="margin-top:-12px;" src="/resources/images/SSLogo2.png" th:src="@{/resources/images/SSLogo2.png}" alter="SSLogo2.png" /></a>
 				<a class="navbar-brand" th:href="@{/home}">SAMSONG Intranet</a>
 			</div>
-        <div id="navbar" class="navbar-collapse collapse">
-			<ul class="nav navbar-nav">
-			<li th:class="(${selectedMenu}=='notice')?'active'"><a th:href="@{/notice(menu=notice)}">공지사항</a></li>
-			<li th:class="(${selectedMenu}=='employees')?'active'"><a th:href="@{/employees(menu=employees)}">사원목록</a></li>
-			<li><a href="#contact">Contact</a></li>
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown<span class="caret"></span></a>
-					<ul class="dropdown-menu scrollable-menu" role="menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li class="divider"></li>
-						<li class="dropdown-header">Nav header</li>
-						<li><a href="#">Separated link</a></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul>
-				</li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-						<span class="glyphicon glyphicon-bell" aria-hidden="true"></span>&nbsp;<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu">
-						<li>
-							<a href="#">알림</a>
-						</li>
-					</ul>
-				</li>
-		 		<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-					<img style="margin-top:-7px;" class="emp-thumbnail img-thumbnail" th:attr="src=@{${user.empPhoto}},alt=@{${user.empPhoto}}" id="empPhoto" />
-					<span th:text="${user['empName']}"></span>&nbsp;님<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu user" role="menu">
-						<li>
-							<a th:href="@{/settings/account}"><span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>설정</a>
-						</li>
-						<li class="divider"></li>
-						<li><a th:href="@{/j_spring_security_logout}"><span class="glyphicon glyphicon-off" aria-hidden="true">&nbsp;</span>로그아웃</a></li>
-					</ul>
-				</li>
-			</ul>
-        </div><!--/.nav-collapse -->
-      </div>
+	        <div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li th:class="(${selectedMenu}=='notice')?'active'"><a th:href="@{/notice(menu=notice)}">공지사항</a></li>
+					<li th:class="(${selectedMenu}=='employees')?'active'"><a th:href="@{/employees(menu=employees)}">사원목록</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">메뉴<span class="caret"></span></a>
+						<ul class="dropdown-menu scrollable-menu" role="menu">
+							<li><a href="#">공지사항</a></li>
+							<li class="divider"></li>
+							<li><a href="#">휴가관리</a></li>
+							<li><a href="#">출입관리</a></li>
+							<li class="divider"></li>
+							<li><a href="#">자료실</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							<span class="glyphicon glyphicon-bell" aria-hidden="true"></span>&nbsp;<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="#">알림</a>
+							</li>
+						</ul>
+					</li>
+			 		<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+						<img style="margin-top:-7px;" class="emp-thumbnail img-thumbnail" th:attr="src=@{${user.empPhoto}},alt=@{${user.empPhoto}}" id="empPhoto" />
+						<span th:text="${user.empName}"></span>&nbsp;님<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu user" role="menu">
+							<li>
+								<a th:href="@{/settings/account}"><span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>설정</a>
+							</li>
+							<li class="divider"></li>
+							<li><a th:href="@{/j_spring_security_logout}"><span class="glyphicon glyphicon-off" aria-hidden="true">&nbsp;</span>로그아웃</a></li>
+						</ul>
+					</li>
+				</ul>
+       		</div><!--/.nav-collapse -->
+    	</div>
 	</nav>
 </body>  
 </html>

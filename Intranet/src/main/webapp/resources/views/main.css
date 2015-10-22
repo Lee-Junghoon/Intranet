@@ -1,3 +1,35 @@
+@charset "UTF-8";
+
 body{
 	font-family:나눔고딕;
+	
+	
+}
+.item{
+	width:auto;
+	height:0;
+}
+/* 480px 이하 */
+@media (max-width:480px){
+	.test{
+		color:black;
+	}
+}
+
+/* 768px 이상 */
+@media (min-width:768px){
+	.test{
+		color:red;
+	}
+}
+
+/* 1024px 이상 */
+@media (min-width:1024px){
+	.test{
+		color:blue;
+	}
+}
+.emp-photo{
+	width:50px;
+	height:55px;
 }

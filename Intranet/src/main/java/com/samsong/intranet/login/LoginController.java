@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.samsong.intranet.home.HomeService;
 import com.samsong.intranet.mail.MailService;
+import com.samsong.intranet.user.Employee;
 import com.samsong.intranet.user.User;
 
 /**
@@ -27,6 +29,8 @@ import com.samsong.intranet.user.User;
 public class LoginController {
 	@Autowired
 	private LoginService service;
+	@Autowired
+	private HomeService homeService;
 	@Autowired
 	private MailService mailService;
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
@@ -53,16 +57,9 @@ public class LoginController {
 		user = (User)auth.getPrincipal();
 		
 		service.insertLog(user.getEmpNo(),"LOGIN");		//사용자 로그인 처리
-		Map<String, Object> info = new HashMap<String, Object>();
-		info.put("deptNo", user.getDeptNo());
-		info.put("deptName", user.getDeptName());
-		info.put("empNo", user.getEmpNo());		
-		info.put("empName", user.getEmpName());
-		info.put("email", user.getEmail());
-		info.put("empCellNo", user.getEmpCellNo());
-		info.put("empPhoto", "/settings/thumbnail?path="+user.getEmpPhoto());
-		
-		model.addAttribute("user", info);
+		model.addAttribute("user", Employee.userMapper(user));
+		model.addAttribute("notice", homeService.getNoticeTop1());
+		model.addAttribute("eduList", homeService.getEducationTop5());
 		return "main";
 	}
 	
